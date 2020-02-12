@@ -113,4 +113,5 @@ public class GoodsController {
         List<TypeGoodsVo> list = goodsService.queryTypeGoods(goodsName);
         return new ResponseVo(ErrorEnum.SUCCESS,list);
     }
+
 }
