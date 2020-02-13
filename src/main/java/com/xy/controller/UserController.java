@@ -1,7 +1,5 @@
 package com.xy.controller;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
 import com.xy.base.ResponseVo;
 import com.xy.entity.vos.LoginVo;
 import com.xy.entity.vos.UserVo;
@@ -9,6 +7,8 @@ import com.xy.enums.ErrorEnum;
 import com.xy.exception.BusinessException;
 import com.xy.service.UserService;
 import com.xy.util.CaptchaUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 

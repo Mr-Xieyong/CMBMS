@@ -1,12 +1,14 @@
 package com.xy.controller;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
+//import com.wordnik.swagger.annotations.Api;
+//import com.wordnik.swagger.annotations.ApiOperation;
 import com.xy.base.ResponseVo;
 import com.xy.entity.vos.GoodsVo;
 import com.xy.entity.vos.TypeGoodsVo;
 import com.xy.enums.ErrorEnum;
 import com.xy.service.GoodsService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +19,7 @@ import java.util.Map;
  * @author Xieyong
  * @date 2019/12/16 - 12:45
  */
-@Api(value = "物资管理", description = "物资管理")
+@Api(tags = "物资管理", description = "物资管理")
 @RestController
 @RequestMapping("/goodsController")
 public class GoodsController {
@@ -55,7 +57,7 @@ public class GoodsController {
      */
     @ApiOperation(value = "删除物资 (单个)", notes = "删除物资 (单个)")
     @RequestMapping(value = "/deleteGoods", method = RequestMethod.POST)
-    public ResponseVo deleteGoods(Integer userId, Integer id) {
+    public ResponseVo deleteGoods(@RequestParam(value = "userId") Integer userId, @RequestParam(value = "id") Integer id) {
         return new ResponseVo(ErrorEnum.SUCCESS, goodsService.deleteGoods(userId, id));
     }
 

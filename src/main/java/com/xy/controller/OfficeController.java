@@ -1,11 +1,11 @@
 package com.xy.controller;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
 import com.xy.base.ResponseVo;
 import com.xy.entity.vos.OfficeVo;
 import com.xy.enums.ErrorEnum;
 import com.xy.service.OfficeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  * @author Xieyong
  * @date 2020/1/14 - 17:09
  */
-@Api(value = "机构组织操作", description = "机构组织操作")
+@Api(tags = "机构组织操作", description = "机构组织操作")
 @RestController
 @RequestMapping("officeController")
 public class OfficeController {
