@@ -1,5 +1,6 @@
 package com.xy.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xy.base.ResponseVo;
 import com.xy.entity.dos.Goods;
@@ -48,7 +49,7 @@ public interface GoodsService extends IService<Goods>{
     /**
      * 模糊查询物资
      */
-    List<TypeGoodsVo> queryTypeGoods(String goodsName);
+    Page<TypeGoodsVo> queryTypeGoods(String goodsName, Integer pageNum, Integer pageSize);
 
         /**
          * 修改物资

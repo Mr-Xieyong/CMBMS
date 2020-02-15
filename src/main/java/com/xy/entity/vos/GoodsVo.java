@@ -29,5 +29,5 @@ public class GoodsVo implements Serializable{
     private Integer goodsStatus;   //物资当前状态：0.可借，1.不可借
     private Integer delFlag;   //删除标记：1：正常，0：注销
 
-    private Integer UserId;
+    private Integer userId;
 }

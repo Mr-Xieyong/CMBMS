@@ -1,7 +1,6 @@
 package com.xy.controller;
 
-//import com.wordnik.swagger.annotations.Api;
-//import com.wordnik.swagger.annotations.ApiOperation;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xy.base.ResponseVo;
 import com.xy.entity.vos.GoodsVo;
 import com.xy.entity.vos.TypeGoodsVo;
@@ -13,13 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Xieyong
  * @date 2019/12/16 - 12:45
  */
-@Api(tags = "物资管理", description = "物资管理")
+@Api(value = "物资管理", description = "物资管理")
 @RestController
 @RequestMapping("/goodsController")
 public class GoodsController {
@@ -111,9 +109,11 @@ public class GoodsController {
      */
     @ApiOperation(value = "模糊查询种类物资", notes = "模糊查询种类物资")
     @RequestMapping(value = "/queryTypeGoods", method = RequestMethod.GET)
-    public ResponseVo queryTypeGoods(@RequestParam(value="goodsName") String goodsName) {
-        List<TypeGoodsVo> list = goodsService.queryTypeGoods(goodsName);
-        return new ResponseVo(ErrorEnum.SUCCESS,list);
+    public ResponseVo queryTypeGoods(@RequestParam(value="goodsName") String goodsName,
+                                     @RequestParam(value = "pageNum",defaultValue = "1",required = false) Integer pageNum,
+                                     @RequestParam(value = "pageSize",defaultValue = "5",required = false) Integer pageSize) {
+        Page<TypeGoodsVo> page = goodsService.queryTypeGoods(goodsName, pageNum, pageSize);
+        return new ResponseVo(ErrorEnum.SUCCESS,page);
     }
 
 }

@@ -21,9 +21,11 @@ public class Audit implements Serializable {
     private Integer userId;
     private Integer officeId;
     private Integer msgId;
-    private Integer auditOpinion;
+    private Integer auditResults;
+    private String auditOpinion;
     private Integer auditBy;
     private Date auditTime;
+    private Integer createBy;
     private Date createTime;
     private Integer delFlag;
 }

@@ -32,6 +32,10 @@ public enum ErrorEnum {
     OFFICE_EMAIL_ISNULL(30005,"机构组织邮箱地址为空"),
     OFFICE_NAME_ISEXIST(30006,"机构组织名已存在"),
 
+    TITLE_NOT_NULL(40001,"消息题目不能为空"),
+    CONTENT_NOT_NULL(40002,"消息内容不能为空"),
+    AUDIT_IS_OK(40003,"该消息已被审核"),
+
 
     OFFICE_NAME_INULL(3001111,"组织名为空");
 

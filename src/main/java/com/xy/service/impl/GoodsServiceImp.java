@@ -1,5 +1,6 @@
 package com.xy.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xy.base.ResponseVo;
 import com.xy.constant.BaseConstant;
@@ -184,7 +185,8 @@ public class GoodsServiceImp extends ServiceImpl<GoodsMapper, Goods> implements 
      * @param goodsName
      * @return
      */
-    public List<TypeGoodsVo> queryTypeGoods(String goodsName) {
+    public Page<TypeGoodsVo> queryTypeGoods(String goodsName, Integer pageNum, Integer pageSize) {
+        Page<TypeGoodsVo> page = new Page<>(pageNum, pageSize);
         List<TypeGoodsDto> typeGoodsDtoList = typeGoodsMapper.queryTypeGoods(goodsName);
         List<TypeGoodsVo> typeGoodsVoList = new ArrayList<>();
         for (int i=0; i<typeGoodsDtoList.size(); i++) {
@@ -193,8 +195,8 @@ public class GoodsServiceImp extends ServiceImpl<GoodsMapper, Goods> implements 
             dozerBeanMapper.map(dto,typeGoodsVo);
             typeGoodsVoList.add(typeGoodsVo);
         }
-
-        return typeGoodsVoList;
+        page.setRecords(typeGoodsVoList);
+        return page;
     }
 
 
