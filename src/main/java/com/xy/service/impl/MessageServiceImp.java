@@ -13,9 +13,9 @@ import com.xy.mapper.MessageMapper;
 import com.xy.service.MessageService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -71,6 +71,23 @@ public class MessageServiceImp extends ServiceImpl<MessageMapper, Message> imple
         List<MessageVo> msg = messageMapper.toAuditMsg();
         return msg;
     }
+
+    public MessageVo getMessage(Integer msgId){
+        MessageVo messageVo = messageMapper.getMessage(msgId);
+        return messageVo;
+    }
+
+
+    public List<MessageVo> getMessageList() {
+        List<MessageVo> list = new ArrayList<>();
+        if (StringUtils.isEmpty(list)) {
+            throw new BusinessException(ErrorEnum.NO_MESSAGE);
+        }
+        list = messageMapper.getMessageList();
+        return list;
+    }
+
+
 
     public int auditMsg(Integer msgId, Integer auditResults, String auditOpinion, Integer userId) {
         Audit audit = messageMapper.selectAuditByMsgId(msgId);

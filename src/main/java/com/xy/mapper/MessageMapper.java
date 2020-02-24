@@ -17,5 +17,9 @@ public interface MessageMapper extends BaseMapper<Message>{
     //根据消息id获取待审核信息
     List<MessageVo> toAuditMsg();
 
+    MessageVo getMessage(@Param("msgId") Integer msgId);
+
+    List<MessageVo> getMessageList();
+
     Audit selectAuditByMsgId(@Param("msgId") Integer msgId);
 }

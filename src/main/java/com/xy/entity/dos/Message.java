@@ -25,6 +25,7 @@ public class Message implements Serializable{
     private String pic; //消息配图路径
     private Integer createBy;  //消息创建人Id
     private Date createTime;   //消息创建时间
+    private Date publishTime;   //消息发布时间
     private Integer publish;   //发布  0.待审核发布  1.已发布
     private Integer del_flag;   //删除标记  1.正常  0.过期
 }

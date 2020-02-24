@@ -35,6 +35,7 @@ public enum ErrorEnum {
     TITLE_NOT_NULL(40001,"消息题目不能为空"),
     CONTENT_NOT_NULL(40002,"消息内容不能为空"),
     AUDIT_IS_OK(40003,"该消息已被审核"),
+    NO_MESSAGE(40004,"暂无消息"),
 
 
     OFFICE_NAME_INULL(3001111,"组织名为空");

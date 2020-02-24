@@ -7,6 +7,7 @@ import com.xy.enums.ErrorEnum;
 import com.xy.service.MessageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -33,19 +34,19 @@ public class MessageController {
 
 
     @ApiOperation(value = "待办消息显示", notes = "待办消息显示")
-    @RequestMapping(value = "/toAuditMsg", method = RequestMethod.POST)
+    @RequestMapping(value = "/toAuditMsg", method = RequestMethod.GET)
     public ResponseVo toAuditMsg() {
         List<MessageVo> list = messageService.toAuditMsg();
         return new ResponseVo(ErrorEnum.SUCCESS,list);
     }
 
 
-//    @ApiOperation(value = "查看消息详情", notes = "查看消息详情")
-//    @RequestMapping(value = "/toAuditMsg", method = RequestMethod.POST)
-//    public ResponseVo toAuditMsg() {
-//        List<MessageVo> list = messageService.toAuditMsg();
-//        return new ResponseVo(ErrorEnum.SUCCESS,list);
-//    }
+    @ApiOperation(value = "查看消息详情", notes = "查看消息详情")
+    @RequestMapping(value = "/getMessage", method = RequestMethod.POST)
+    public ResponseVo getMessage(@RequestParam(value = "msgId") Integer msgId) {
+        MessageVo messageVo = messageService.getMessage(msgId);
+        return new ResponseVo(ErrorEnum.SUCCESS,messageVo);
+    }
 
 
     @ApiOperation(value = "审核资讯消息", notes = "审核资讯消息")
@@ -56,9 +57,10 @@ public class MessageController {
         return new ResponseVo(ErrorEnum.SUCCESS,ret);
     }
 
-//    @ApiOperation(value = "获取所有消息资讯，页面展现最前面四个，点击更多获取其他的", notes = "获取所有消息资讯，页面展现最前面四个，点击更多获取其他的")
-//    @RequestMapping(value = "/saveMsg", method = RequestMethod.POST)
-//    public ResponseVo saveMsg(MessageVo messageVo) {
-//
-//    }
+    @ApiOperation(value = "获取所有消息资讯，页面展现最前面四个，点击更多获取其他的", notes = "获取所有消息资讯，页面展现最前面四个，点击更多获取其他的")
+    @RequestMapping(value = "/getMessageList", method = RequestMethod.GET)
+    public ResponseVo getMessageList() {
+        List<MessageVo> list = messageService.getMessageList();
+        return new ResponseVo(ErrorEnum.SUCCESS,list);
+    }
 }

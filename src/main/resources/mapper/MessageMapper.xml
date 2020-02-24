@@ -3,4 +3,64 @@
 
 <mapper namespace="com.xy.mapper.MessageMapper">
 
+    <select id="toAuditMsg" resultType="com.xy.entity.vos.MessageVo">
+        SELECT *
+        FROM tbl_audit a
+        LEFT JOIN tbl_message b
+        ON a.msg_id = b.id
+        WHERE  ISNULL(a.audit_results)
+        AND a.del_flag = 1
+    </select>
+
+    <select id="getMessage" resultType="com.xy.entity.vos.MessageVo">
+    SELECT  a.id as id,
+            a.msg_type as msgType,
+            a.title as title,
+            a.content as content,
+            a.pic as pic,
+            a.create_by as createBy,
+            a.create_time as createTime,
+            d.audit_time as publishTime,
+            a.publish as publish,
+            a.del_flag as delFlag,
+			b.user_name as userName,
+			c.name as officeName
+    FROM tbl_message a
+    left JOIN tbl_audit d
+    ON a.id = d.msg_id
+    LEFT JOIN tbl_user b
+    ON a.create_by = b.user_name
+    LEFT JOIN tbl_office c
+    ON c.id = b.office_id
+    WHERE a.publish = 1 AND a.del_flag = 1 AND a.id = #{msgId}
+    </select>
+
+    <select id="getMessageList" resultType="com.xy.entity.vos.MessageVo">
+         SELECT  a.id as id,
+            a.msg_type as msgType,
+            a.title as title,
+            a.content as content,
+            a.pic as pic,
+            a.create_by as createBy,
+            a.create_time as createTime,
+            d.audit_time as publishTime,
+            a.publish as publish,
+            a.del_flag as delFlag,
+			b.user_name as userName,
+			c.name as officeName
+    FROM tbl_message a
+    left JOIN tbl_audit d
+    ON a.id = d.msg_id
+    LEFT JOIN tbl_user b
+    ON a.create_by = b.user_name
+    LEFT JOIN tbl_office c
+    ON c.id = b.office_id
+    WHERE a.publish = 1 AND a.del_flag = 1
+    </select>
+
+    <select id="selectAuditByMsgId" resultType="com.xy.entity.dos.Audit">
+        SELECT *
+        FROM tbl_audit
+        WHERE msg_id = #{msgId} and del_flag = 1
+    </select>
 </mapper>

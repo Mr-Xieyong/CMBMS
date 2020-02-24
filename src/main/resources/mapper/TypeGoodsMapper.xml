@@ -30,6 +30,6 @@
       FROM tbl_type_goods a
       LEFT JOIN tbl_office b
       ON a.office_id = b.id
-      where type_name LIKE '%#{goodsName}%'
+      where type_name LIKE '%${goodsName}%'
     </select>
 </mapper>
